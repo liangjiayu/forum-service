@@ -4,18 +4,18 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.me</groupId>
-    <artifactId>blog</artifactId>
+    <artifactId>forum</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
-    <name>blog</name>
+    <name>forum</name>
     <description>Demo project for Spring Boot</description>
 
     <modules>
-        <module>blog-common</module>
-        <module>blog-start</module>
-        <module>blog-web</module>
-        <module>blog-service</module>
-        <module>blog-dao</module>
+        <module>forum-common</module>
+        <module>forum-start</module>
+        <module>forum-web</module>
+        <module>forum-service</module>
+        <module>forum-dao</module>
     </modules>
 
     <parent>
@@ -26,7 +26,7 @@
     </parent>
 
     <properties>
-        <blog.version>0.0.1-SNAPSHOT</blog.version>
+        <forum.version>0.0.1-SNAPSHOT</forum.version>
         <java.version>1.8</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -54,22 +54,22 @@
         <dependencies>
             <dependency>
                 <groupId>com.me</groupId>
-                <artifactId>blog-common</artifactId>
+                <artifactId>forum-common</artifactId>
                 <version>0.0.1-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>com.me</groupId>
-                <artifactId>blog-web</artifactId>
+                <artifactId>forum-web</artifactId>
                 <version>0.0.1-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>com.me</groupId>
-                <artifactId>blog-service</artifactId>
+                <artifactId>forum-service</artifactId>
                 <version>0.0.1-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>com.me</groupId>
-                <artifactId>blog-dao</artifactId>
+                <artifactId>forum-dao</artifactId>
                 <version>0.0.1-SNAPSHOT</version>
             </dependency>
             <!--集成druid连接池-->

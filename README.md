@@ -1,4 +1,4 @@
-# java-blog
+# java-forum
 
 基于spring-boot框架的mvc多模块项目。
 
@@ -17,11 +17,11 @@
 ## 目录说明
 
 ``` 
-├── blog-common // 通用模块，引用依赖、管理通用文件等。
-├── blog-dao // 访问数据层
-├── blog-service // 业务实现层
-├── blog-start // 项目启动和基础配置
-├── blog-web // 控制层和视图层
+├── forum-common // 通用模块，引用依赖、管理通用文件等。
+├── forum-dao // 访问数据层
+├── forum-service // 业务实现层
+├── forum-start // 项目启动和基础配置
+├── forum-web // 控制层和视图层
 └── pom.xml // 项目总依赖
 ```
 
