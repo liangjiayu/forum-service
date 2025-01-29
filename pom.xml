@@ -1,115 +1,95 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.me</groupId>
+    <groupId>com.me.forum</groupId>
     <artifactId>forum</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
+
     <name>forum</name>
     <description>Demo project for Spring Boot</description>
-
-    <modules>
-        <module>forum-common</module>
-        <module>forum-start</module>
-        <module>forum-web</module>
-        <module>forum-service</module>
-        <module>forum-dao</module>
-    </modules>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.7.6</version>
+        <version>3.4.2</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
+    <modules>
+        <module>forum-common</module>
+        <module>forum-admin</module>
+    </modules>
+
     <properties>
-        <forum.version>0.0.1-SNAPSHOT</forum.version>
-        <java.version>1.8</java.version>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <spring-boot.version>2.7.6</spring-boot.version>
-        <druid.version>1.2.14</druid.version>
-        <hutool.version>5.8.9</hutool.version>
-        <mysql-connector.version>8.0.29</mysql-connector.version>
-        <mybatis-plus.version>3.5.1</mybatis-plus.version>
+        <java.version>21</java.version>
+        <forum-common.version>0.0.1-SNAPSHOT</forum-common.version>
     </properties>
 
     <dependencies>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-        </dependency>
-
-        <!--Hutool Java工具包-->
-        <dependency>
-            <groupId>cn.hutool</groupId>
-            <artifactId>hutool-all</artifactId>
-        </dependency>
-        <!--lombok依赖-->
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <optional>true</optional>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.springframework.boot</groupId>-->
+<!--            <artifactId>spring-boot-starter-web</artifactId>-->
+<!--        </dependency>-->
+<!--        <dependency>-->
+<!--            <groupId>org.mybatis.spring.boot</groupId>-->
+<!--            <artifactId>mybatis-spring-boot-starter</artifactId>-->
+<!--            <version>3.0.4</version>-->
+<!--        </dependency>-->
+<!--        <dependency>-->
+<!--            <groupId>org.projectlombok</groupId>-->
+<!--            <artifactId>lombok</artifactId>-->
+<!--            <optional>true</optional>-->
+<!--        </dependency>-->
+<!--        <dependency>-->
+<!--            <groupId>org.springframework.boot</groupId>-->
+<!--            <artifactId>spring-boot-starter-test</artifactId>-->
+<!--            <scope>test</scope>-->
+<!--        </dependency>-->
+<!--        <dependency>-->
+<!--            <groupId>org.mybatis.spring.boot</groupId>-->
+<!--            <artifactId>mybatis-spring-boot-starter-test</artifactId>-->
+<!--            <version>3.0.4</version>-->
+<!--            <scope>test</scope>-->
+<!--        </dependency>-->
     </dependencies>
 
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>com.me</groupId>
-                <artifactId>forum-common</artifactId>
-                <version>0.0.1-SNAPSHOT</version>
-            </dependency>
-            <dependency>
-                <groupId>com.me</groupId>
-                <artifactId>forum-web</artifactId>
-                <version>0.0.1-SNAPSHOT</version>
-            </dependency>
-            <dependency>
-                <groupId>com.me</groupId>
-                <artifactId>forum-service</artifactId>
-                <version>0.0.1-SNAPSHOT</version>
-            </dependency>
-            <dependency>
-                <groupId>com.me</groupId>
-                <artifactId>forum-dao</artifactId>
-                <version>0.0.1-SNAPSHOT</version>
-            </dependency>
-            <!--集成druid连接池-->
-            <dependency>
-                <groupId>com.alibaba</groupId>
-                <artifactId>druid-spring-boot-starter</artifactId>
-                <version>${druid.version}</version>
-            </dependency>
-            <!--Mysql数据库驱动-->
-            <dependency>
-                <groupId>mysql</groupId>
-                <artifactId>mysql-connector-java</artifactId>
-                <version>${mysql-connector.version}</version>
-            </dependency>
-            <!--Hutool Java工具包-->
-            <dependency>
-                <groupId>cn.hutool</groupId>
-                <artifactId>hutool-all</artifactId>
-                <version>${hutool.version}</version>
-            </dependency>
-            <!--MyBatis Plus 依赖-->
-            <dependency>
-                <groupId>com.baomidou</groupId>
-                <artifactId>mybatis-plus-boot-starter</artifactId>
-                <version>${mybatis-plus.version}</version>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
+<!--    <dependencyManagement>-->
+<!--        <dependencies>-->
+<!--            &lt;!&ndash;forum通用模块&ndash;&gt;-->
+<!--            <dependency>-->
+<!--                <groupId>com.me.forum</groupId>-->
+<!--                <artifactId>forum-common</artifactId>-->
+<!--                <version>${forum-common.version}</version>-->
+<!--            </dependency>-->
+<!--            &lt;!&ndash;集成druid连接池&ndash;&gt;-->
+<!--            <dependency>-->
+<!--                <groupId>com.alibaba</groupId>-->
+<!--                <artifactId>druid-spring-boot-starter</artifactId>-->
+<!--                &lt;!&ndash;                <version>${druid.version}</version>&ndash;&gt;-->
+<!--            </dependency>-->
+<!--            &lt;!&ndash;Hutool Java工具包&ndash;&gt;-->
+<!--            <dependency>-->
+<!--                <groupId>cn.hutool</groupId>-->
+<!--                <artifactId>hutool-all</artifactId>-->
+<!--                &lt;!&ndash;                <version>${hutool.version}</version>&ndash;&gt;-->
+<!--            </dependency>-->
+<!--            &lt;!&ndash; MyBatis&ndash;&gt;-->
+<!--            <dependency>-->
+<!--                <groupId>org.mybatis</groupId>-->
+<!--                <artifactId>mybatis</artifactId>-->
+<!--                &lt;!&ndash;                <version>${mybatis.version}</version>&ndash;&gt;-->
+<!--            </dependency>-->
+<!--            &lt;!&ndash;Mysql数据库驱动&ndash;&gt;-->
+<!--            <dependency>-->
+<!--                <groupId>mysql</groupId>-->
+<!--                <artifactId>mysql-connector-java</artifactId>-->
+<!--                &lt;!&ndash;                <version>${mysql-connector.version}</version>&ndash;&gt;-->
+<!--            </dependency>-->
+<!--        </dependencies>-->
+<!--    </dependencyManagement>-->
 
     <build>
         <plugins>
