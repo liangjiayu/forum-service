@@ -48,4 +48,9 @@ public class TopicService extends ServiceImpl<TopicMapper, Topic> implements ITo
     public boolean delete(String id) {
         return this.topicMapper.deleteById(id) > 0;
     }
+
+    @Override
+    public boolean isExist(Integer id) {
+        return this.topicMapper.selectById(id) != null;
+    }
 }

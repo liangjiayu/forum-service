@@ -13,4 +13,6 @@ public interface ITopicService {
     boolean update(TopicDto topicDto);
 
     boolean delete(String id);
+
+    boolean isExist(Integer id);
 }

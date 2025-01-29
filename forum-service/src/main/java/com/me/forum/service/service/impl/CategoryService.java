@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.me.forum.common.api.ApiException;
 import com.me.forum.dao.mapper.CategoryMapper;
 import com.me.forum.dao.modal.Category;
 import com.me.forum.service.dto.CategoryPageDto;
@@ -30,6 +31,12 @@ public class CategoryService extends ServiceImpl<CategoryMapper, Category> imple
 
     @Override
     public boolean create(CategoryDto categoryDto) {
+        // 检验 name 是否唯一
+        QueryWrapper<Category> nameQuery = new QueryWrapper<>();
+        nameQuery.eq("name", categoryDto.getName());
+        if (this.categoryMapper.selectCount(nameQuery) > 0) {
+            throw new ApiException("名称已存在");
+        }
         Category category = new Category();
         BeanUtils.copyProperties(categoryDto, category);
         category.setId(null);

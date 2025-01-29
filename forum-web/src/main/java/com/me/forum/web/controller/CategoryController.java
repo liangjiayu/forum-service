@@ -4,6 +4,7 @@ import com.me.forum.common.api.CommonResult;
 import com.me.forum.service.dto.CategoryDto;
 import com.me.forum.service.dto.CategoryPageDto;
 import com.me.forum.service.service.ICategoryService;
+import com.me.forum.service.service.ITopicService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -17,6 +18,9 @@ public class CategoryController {
     @Autowired
     ICategoryService categoryService;
 
+    @Autowired
+    ITopicService topicService;
+
     @RequestMapping(path = "/list", method = RequestMethod.GET)
     @ResponseBody
     public CommonResult list(CategoryPageDto categoryPageDto) {
@@ -26,6 +30,9 @@ public class CategoryController {
     @RequestMapping(path = "/create", method = RequestMethod.POST)
     @ResponseBody
     public CommonResult create(@RequestBody @Valid CategoryDto categoryDto) {
+        if (!topicService.isExist(categoryDto.getTopicId())) {
+            return CommonResult.failed("话题不存在");
+        }
         boolean result = this.categoryService.create(categoryDto);
         if (result) {
             return CommonResult.success(null);
