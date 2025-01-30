@@ -13,6 +13,8 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class TopicServiceImpl extends ServiceImpl<TopicMapper, Topic> implements TopicService {
 
@@ -47,6 +49,11 @@ public class TopicServiceImpl extends ServiceImpl<TopicMapper, Topic> implements
     @Override
     public boolean delete(Integer id) {
         return this.topicMapper.deleteById(id) > 0;
+    }
+
+    @Override
+    public List<Topic> searchByMid(Integer mid) {
+        return this.topicMapper.searchByMid(mid);
     }
 
 }

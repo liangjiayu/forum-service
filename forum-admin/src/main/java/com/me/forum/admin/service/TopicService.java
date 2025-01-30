@@ -5,6 +5,8 @@ import com.me.forum.admin.dto.TopicDto;
 import com.me.forum.admin.model.Topic;
 import com.me.forum.admin.dto.TopicPageDto;
 
+import java.util.List;
+
 public interface TopicService {
     IPage<Topic> list(TopicPageDto topicPageDto);
 
@@ -13,4 +15,6 @@ public interface TopicService {
     boolean update(TopicDto topicDto);
 
     boolean delete(Integer id);
+
+    List<Topic> searchByMid(Integer mid);
 }

@@ -14,6 +14,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Controller
 @RequestMapping("/topic")
 @Tag(name = "TopicController", description = "话题API")
@@ -69,6 +71,15 @@ public class TopicController {
         } else {
             return CommonResult.failed();
         }
+    }
+
+    @PostMapping("/searchByMid")
+    @ResponseBody
+    @Operation(summary = "查询用户的话题")
+    public CommonResult searchByMid(@Parameter(name = "mid", description = "用户id", required = true) Integer mid) {
+        List<Topic> records = this.topicService.searchByMid(mid);
+
+        return CommonResult.success(records);
     }
 
 }
