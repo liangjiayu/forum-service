@@ -12,6 +12,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springdoc.core.annotations.ParameterObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -27,7 +28,7 @@ public class TopicController {
     @GetMapping("/list")
     @ResponseBody
     @Operation(summary = "获取话题列表")
-    public CommonResult<IPage<Topic>> list(@ParameterObject TopicPageDto topicPageDto) {
+    public CommonResult<IPage<Topic>> list(@Validated @ParameterObject TopicPageDto topicPageDto) {
         IPage<Topic> records = this.topicService.list(topicPageDto);
         return CommonResult.success(records);
     }
@@ -36,13 +37,12 @@ public class TopicController {
     @PostMapping("/create")
     @ResponseBody
     @Operation(summary = "创建话题")
-    public CommonResult create(@RequestBody TopicDto topicDto) {
+    public CommonResult create(@Validated @RequestBody TopicDto topicDto) {
         boolean result = this.topicService.create(topicDto);
         if (result) {
             return CommonResult.success(null);
-        } else {
-            return CommonResult.failed();
         }
+        return CommonResult.failed();
     }
 
     @PostMapping("/update/{id}")
@@ -50,15 +50,14 @@ public class TopicController {
     @Operation(summary = "更新话题")
     public CommonResult update(
             @Parameter(name = "id", description = "话题id", required = true) @PathVariable("id") Integer id,
-            @RequestBody TopicDto topicDto
+            @Validated @RequestBody TopicDto topicDto
     ) {
         topicDto.setId(id);
         boolean result = this.topicService.update(topicDto);
         if (result) {
             return CommonResult.success(null);
-        } else {
-            return CommonResult.failed();
         }
+        return CommonResult.failed();
     }
 
     @PostMapping("/delete/{id}")
@@ -68,9 +67,8 @@ public class TopicController {
         boolean result = this.topicService.delete(id);
         if (result) {
             return CommonResult.success(null);
-        } else {
-            return CommonResult.failed();
         }
+        return CommonResult.failed();
     }
 
     @PostMapping("/searchByMid")

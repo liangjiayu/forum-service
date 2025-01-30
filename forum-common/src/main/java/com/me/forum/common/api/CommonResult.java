@@ -1,8 +1,18 @@
 package com.me.forum.common.api;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+import lombok.Getter;
+import lombok.Setter;
+
+@Setter
+@Getter
 public class CommonResult<T> {
+
+    @Schema(description = "状态码，成功为200，其他情况为异常", defaultValue = "200")
     private long code;
+    @Schema(description = "异常信息", defaultValue = "操作成功")
     private String message;
+    @Schema(description = "结果数据主体")
     private T data;
 
     protected CommonResult() {
@@ -68,27 +78,4 @@ public class CommonResult<T> {
         return failed(ResultCode.FAILED);
     }
 
-    public long getCode() {
-        return code;
-    }
-
-    public void setCode(long code) {
-        this.code = code;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
-    public T getData() {
-        return data;
-    }
-
-    public void setData(T data) {
-        this.data = data;
-    }
 }
