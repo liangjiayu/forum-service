@@ -29,67 +29,56 @@
     </properties>
 
     <dependencies>
-<!--        <dependency>-->
-<!--            <groupId>org.springframework.boot</groupId>-->
-<!--            <artifactId>spring-boot-starter-web</artifactId>-->
-<!--        </dependency>-->
-<!--        <dependency>-->
-<!--            <groupId>org.mybatis.spring.boot</groupId>-->
-<!--            <artifactId>mybatis-spring-boot-starter</artifactId>-->
-<!--            <version>3.0.4</version>-->
-<!--        </dependency>-->
-<!--        <dependency>-->
-<!--            <groupId>org.projectlombok</groupId>-->
-<!--            <artifactId>lombok</artifactId>-->
-<!--            <optional>true</optional>-->
-<!--        </dependency>-->
-<!--        <dependency>-->
-<!--            <groupId>org.springframework.boot</groupId>-->
-<!--            <artifactId>spring-boot-starter-test</artifactId>-->
-<!--            <scope>test</scope>-->
-<!--        </dependency>-->
-<!--        <dependency>-->
-<!--            <groupId>org.mybatis.spring.boot</groupId>-->
-<!--            <artifactId>mybatis-spring-boot-starter-test</artifactId>-->
-<!--            <version>3.0.4</version>-->
-<!--            <scope>test</scope>-->
-<!--        </dependency>-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+            <version>5.8.16</version>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
     </dependencies>
 
-<!--    <dependencyManagement>-->
-<!--        <dependencies>-->
-<!--            &lt;!&ndash;forum通用模块&ndash;&gt;-->
-<!--            <dependency>-->
-<!--                <groupId>com.me.forum</groupId>-->
-<!--                <artifactId>forum-common</artifactId>-->
-<!--                <version>${forum-common.version}</version>-->
-<!--            </dependency>-->
-<!--            &lt;!&ndash;集成druid连接池&ndash;&gt;-->
-<!--            <dependency>-->
-<!--                <groupId>com.alibaba</groupId>-->
-<!--                <artifactId>druid-spring-boot-starter</artifactId>-->
-<!--                &lt;!&ndash;                <version>${druid.version}</version>&ndash;&gt;-->
-<!--            </dependency>-->
-<!--            &lt;!&ndash;Hutool Java工具包&ndash;&gt;-->
-<!--            <dependency>-->
-<!--                <groupId>cn.hutool</groupId>-->
-<!--                <artifactId>hutool-all</artifactId>-->
-<!--                &lt;!&ndash;                <version>${hutool.version}</version>&ndash;&gt;-->
-<!--            </dependency>-->
-<!--            &lt;!&ndash; MyBatis&ndash;&gt;-->
-<!--            <dependency>-->
-<!--                <groupId>org.mybatis</groupId>-->
-<!--                <artifactId>mybatis</artifactId>-->
-<!--                &lt;!&ndash;                <version>${mybatis.version}</version>&ndash;&gt;-->
-<!--            </dependency>-->
-<!--            &lt;!&ndash;Mysql数据库驱动&ndash;&gt;-->
-<!--            <dependency>-->
-<!--                <groupId>mysql</groupId>-->
-<!--                <artifactId>mysql-connector-java</artifactId>-->
-<!--                &lt;!&ndash;                <version>${mysql-connector.version}</version>&ndash;&gt;-->
-<!--            </dependency>-->
-<!--        </dependencies>-->
-<!--    </dependencyManagement>-->
+    <!--    <dependencyManagement>-->
+    <!--        <dependencies>-->
+    <!--            &lt;!&ndash;forum通用模块&ndash;&gt;-->
+    <!--            <dependency>-->
+    <!--                <groupId>com.me.forum</groupId>-->
+    <!--                <artifactId>forum-common</artifactId>-->
+    <!--                <version>${forum-common.version}</version>-->
+    <!--            </dependency>-->
+    <!--            &lt;!&ndash;集成druid连接池&ndash;&gt;-->
+    <!--            <dependency>-->
+    <!--                <groupId>com.alibaba</groupId>-->
+    <!--                <artifactId>druid-spring-boot-starter</artifactId>-->
+    <!--                &lt;!&ndash;                <version>${druid.version}</version>&ndash;&gt;-->
+    <!--            </dependency>-->
+    <!--            &lt;!&ndash;Hutool Java工具包&ndash;&gt;-->
+    <!--            <dependency>-->
+    <!--                <groupId>cn.hutool</groupId>-->
+    <!--                <artifactId>hutool-all</artifactId>-->
+    <!--                &lt;!&ndash;                <version>${hutool.version}</version>&ndash;&gt;-->
+    <!--            </dependency>-->
+    <!--            &lt;!&ndash; MyBatis&ndash;&gt;-->
+    <!--            <dependency>-->
+    <!--                <groupId>org.mybatis</groupId>-->
+    <!--                <artifactId>mybatis</artifactId>-->
+    <!--                &lt;!&ndash;                <version>${mybatis.version}</version>&ndash;&gt;-->
+    <!--            </dependency>-->
+    <!--            &lt;!&ndash;Mysql数据库驱动&ndash;&gt;-->
+    <!--            <dependency>-->
+    <!--                <groupId>mysql</groupId>-->
+    <!--                <artifactId>mysql-connector-java</artifactId>-->
+    <!--                &lt;!&ndash;                <version>${mysql-connector.version}</version>&ndash;&gt;-->
+    <!--            </dependency>-->
+    <!--        </dependencies>-->
+    <!--    </dependencyManagement>-->
 
     <build>
         <plugins>

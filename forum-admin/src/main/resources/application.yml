@@ -1,0 +1,23 @@
+server:
+  port: 7100
+
+spring:
+  application:
+    name: forum-admin
+  profiles:
+    active: dev
+  #  main:
+  #    allow-circular-references: true
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+
+# mybatis-plus配置详情： https://baomidou.com/reference/
+mybatis-plus:
+  mapper-locations: classpath:/mapper/**/*.xml
+  global-config:
+    db-config:
+      id-type: ASSIGN_ID
+  configuration:
+    auto-mapping-behavior: partial
+    map-underscore-to-camel-case: true
