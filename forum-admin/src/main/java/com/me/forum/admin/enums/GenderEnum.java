@@ -25,6 +25,6 @@ public enum GenderEnum {
                 return gender;
             }
         }
-        throw new IllegalArgumentException("无效的性别编码: " + code);
+        return null;
     }
 }

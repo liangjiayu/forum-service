@@ -75,7 +75,7 @@ public class SysUsersServiceImpl extends ServiceImpl<SysUsersMapper, SysUsers> i
     }
 
     @Override
-    public boolean update(Integer id, SysUserDto sysUserDto) {
+    public boolean update(int id, SysUserDto sysUserDto) {
         /* 清空不可编辑字段 */
         sysUserDto.setUsername(null);
         sysUserDto.setPassword(null);
@@ -88,7 +88,7 @@ public class SysUsersServiceImpl extends ServiceImpl<SysUsersMapper, SysUsers> i
     }
 
     @Override
-    public boolean delete(Integer id) {
+    public boolean delete(int id) {
         return this.sysUsersMapper.deleteById(id) > 0;
     }
 

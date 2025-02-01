@@ -36,10 +36,12 @@ public class SysUsers implements Serializable {
 
     @TableField(exist = false)
     @Schema(description = "性别文本", example = "男性")
-    private Integer genderText;
+    private String genderText;
+
     @JsonInclude
     public String getGenderText() {
-        return GenderEnum.fromCode(gender).getText();
+        GenderEnum genderEnum = GenderEnum.fromCode(gender);
+        return genderEnum != null ? genderEnum.getText() : null;
     }
 
     @Schema(description = "用户称号", example = "小明")
@@ -64,5 +66,5 @@ public class SysUsers implements Serializable {
 
     @Schema(description = "逻辑删除标识", example = "0")
     @TableLogic
-    private Integer isDeleted;
+    private int isDeleted;
 }

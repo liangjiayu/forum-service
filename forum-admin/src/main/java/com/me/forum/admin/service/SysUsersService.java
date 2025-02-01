@@ -12,9 +12,9 @@ public interface SysUsersService {
 
     boolean create(SysUserDto sysUserDto);
 
-    boolean update(Integer id, SysUserDto sysUserDto);
+    boolean update(int id, SysUserDto sysUserDto);
 
-    boolean delete(Integer id);
+    boolean delete(int id);
 
     SysUsers getDetails(int id);
 

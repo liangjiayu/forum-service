@@ -15,13 +15,13 @@ public class SysUsersQuery extends BasePages {
     @Schema(description = "支持id查询，支持数组")
     private List<Long> ids;
 
-    @Schema(description = "用户名查询", example = "xiaoming")
+    @Schema(description = "用户名查询")
     private String username;
 
     @Schema(description = "性别", example = "1")
     private Integer gender;
 
-    @Schema(description = "原信息查询，支持模糊查询", example = "哈哈")
+    @Schema(description = "元信息查询，支持模糊查询")
     private String metadata;
 
     @Schema(description = "开始时间，格式为yyyy-MM-dd HH:mm:ss", example = "2025-02-01 10:00:00")

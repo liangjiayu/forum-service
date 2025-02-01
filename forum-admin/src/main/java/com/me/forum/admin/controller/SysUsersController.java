@@ -48,7 +48,7 @@ public class SysUsersController {
     @ResponseBody
     @Operation(summary = "更新用户")
     public CommonResult<Boolean> update(
-            @Parameter(name = "id", description = "用户id", required = true) @PathVariable("id") Integer id,
+            @Parameter(name = "id", description = "用户id", required = true) @PathVariable("id") int id,
             @Validated @RequestBody SysUserDto sysUserDto
     ) {
         boolean result = this.sysUsersService.update(id, sysUserDto);
@@ -61,7 +61,7 @@ public class SysUsersController {
     @PostMapping("/delete/{id}")
     @ResponseBody
     @Operation(summary = "删除用户")
-    public CommonResult<Boolean> delete(@Parameter(name = "id", description = "用户id", required = true) @PathVariable Integer id) {
+    public CommonResult<Boolean> delete(@Parameter(name = "id", description = "用户id", required = true) @PathVariable int id) {
         boolean result = this.sysUsersService.delete(id);
         if (result) {
             return CommonResult.success(true);
