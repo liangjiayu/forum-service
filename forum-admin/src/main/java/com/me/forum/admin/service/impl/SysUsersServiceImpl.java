@@ -9,6 +9,7 @@ import com.me.forum.admin.dto.SysUsersQuery;
 import com.me.forum.admin.mapper.SysUsersMapper;
 import com.me.forum.admin.model.SysUsers;
 import com.me.forum.admin.service.SysUsersService;
+import com.me.forum.common.exception.ApiException;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -33,11 +34,21 @@ public class SysUsersServiceImpl extends ServiceImpl<SysUsersMapper, SysUsers> i
         SysUsers sysUser = new SysUsers();
         BeanUtils.copyProperties(sysUserDto, sysUser);
 
+        /* 验证用户名是否唯一 */
+        Long usernameCount = lambdaQuery().eq(SysUsers::getUsername, sysUser.getUsername()).count();
+        if (usernameCount > 0) {
+            throw new ApiException("用户名已存在!");
+        }
+
         return this.sysUsersMapper.insert(sysUser) > 0;
     }
 
     @Override
     public boolean update(Integer id, SysUserDto sysUserDto) {
+        /* 清空不可编辑字段 */
+        sysUserDto.setUsername(null);
+        sysUserDto.setPassword(null);
+
         SysUsers sysUser = new SysUsers();
         BeanUtils.copyProperties(sysUserDto, sysUser);
         sysUser.setId(id);

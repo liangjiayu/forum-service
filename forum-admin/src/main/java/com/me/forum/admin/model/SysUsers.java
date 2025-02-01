@@ -1,9 +1,8 @@
 package com.me.forum.admin.model;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableLogic;
-import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.annotation.*;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.me.forum.admin.enums.GenderEnum;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -28,11 +27,21 @@ public class SysUsers implements Serializable {
     @Schema(description = "用户密码")
     private String password;
 
-    @Schema(description = "用户手机号，唯一")
+    @Schema(description = "用户手机号")
     private String phoneNumber;
 
     @Schema(description = "用户性别，枚举类型：男(1)、女(2)、其他(3)")
     private Integer gender;
+
+    @TableField(exist = false)
+    private Integer genderText;
+    @JsonInclude
+    public String getGenderText() {
+        return GenderEnum.fromCode(gender).getText();
+    }
+
+    @Schema(description = "用户称号")
+    private String nickname;
 
     @Schema(description = "用户头像的URL")
     private String profilePictureUrl;

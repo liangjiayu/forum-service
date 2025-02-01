@@ -34,7 +34,7 @@ public class SysUsersController {
     @PostMapping("/create")
     @ResponseBody
     @Operation(summary = "创建用户")
-    public CommonResult<Boolean> create(@Validated @RequestBody SysUserDto sysUserDto) {
+    public CommonResult<Boolean> create(@Validated(SysUserDto.CreateUser.class) @RequestBody SysUserDto sysUserDto) {
         boolean result = this.sysUsersService.create(sysUserDto);
         if (result) {
             return CommonResult.success(true);
@@ -53,7 +53,7 @@ public class SysUsersController {
         if (result) {
             return CommonResult.success(true);
         }
-        return CommonResult.failed();
+        return CommonResult.failed("用户不存在");
     }
 
     @PostMapping("/delete/{id}")
@@ -64,7 +64,7 @@ public class SysUsersController {
         if (result) {
             return CommonResult.success(true);
         }
-        return CommonResult.failed();
+        return CommonResult.failed("用户不存在");
     }
 
 }

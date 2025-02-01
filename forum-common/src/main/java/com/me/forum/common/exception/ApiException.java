@@ -1,7 +1,9 @@
 package com.me.forum.common.exception;
 
 import com.me.forum.common.api.IErrorCode;
+import lombok.Getter;
 
+@Getter
 public class ApiException extends RuntimeException {
     private IErrorCode errorCode;
 
@@ -22,7 +24,4 @@ public class ApiException extends RuntimeException {
         super(message, cause);
     }
 
-    public IErrorCode getErrorCode() {
-        return errorCode;
-    }
 }
