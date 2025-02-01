@@ -5,6 +5,8 @@ import com.me.forum.admin.dto.SysUserDto;
 import com.me.forum.admin.dto.SysUsersQuery;
 import com.me.forum.admin.model.SysUsers;
 
+import java.util.List;
+
 public interface SysUsersService {
     IPage<SysUsers> list(SysUsersQuery sysUsersQuery);
 
@@ -14,4 +16,7 @@ public interface SysUsersService {
 
     boolean delete(Integer id);
 
+    SysUsers getDetails(int id);
+
+    List<SysUsers> getListByPhone(long phoneNumber);
 }

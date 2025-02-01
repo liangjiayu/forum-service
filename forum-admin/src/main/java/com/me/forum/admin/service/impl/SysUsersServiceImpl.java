@@ -1,7 +1,8 @@
 package com.me.forum.admin.service.impl;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.me.forum.admin.dto.SysUserDto;
@@ -14,6 +15,8 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 
 @Service
 public class SysUsersServiceImpl extends ServiceImpl<SysUsersMapper, SysUsers> implements SysUsersService {
@@ -23,10 +26,38 @@ public class SysUsersServiceImpl extends ServiceImpl<SysUsersMapper, SysUsers> i
 
     @Override
     public IPage<SysUsers> list(SysUsersQuery sysUsersQuery) {
-        Page<SysUsers> page = new Page<>(sysUsersQuery.getPageNum(), sysUsersQuery.getPageSize());
-        QueryWrapper<SysUsers> queryWrapper = new QueryWrapper<>();
+        if (sysUsersQuery.getStartTime() != null && sysUsersQuery.getEndTime() != null
+                && sysUsersQuery.getStartTime().isAfter(sysUsersQuery.getEndTime())) {
+            throw new ApiException("开始时间不能晚于结束时间");
+        }
 
-        return this.sysUsersMapper.selectPage(page, queryWrapper);
+        Page<SysUsers> page = new Page<>(sysUsersQuery.getPageNum(), sysUsersQuery.getPageSize());
+        LambdaQueryWrapper<SysUsers> lambdaQueryWrapper = new LambdaQueryWrapper<>();
+
+        // 查询多个ID
+        if (sysUsersQuery.getIds() != null && !sysUsersQuery.getIds().isEmpty()) {
+            lambdaQueryWrapper.in(SysUsers::getId, sysUsersQuery.getIds());
+        }
+        // 查询用户名
+        if (StringUtils.isNotBlank(sysUsersQuery.getUsername())) {
+            lambdaQueryWrapper.eq(SysUsers::getUsername, sysUsersQuery.getUsername());
+        }
+        // 查询性别
+        if (sysUsersQuery.getGender() != null) {
+            lambdaQueryWrapper.eq(SysUsers::getGender, sysUsersQuery.getGender());
+        }
+        // 模糊查询 元信息
+        if (StringUtils.isNotBlank(sysUsersQuery.getMetadata())) {
+            lambdaQueryWrapper.like(SysUsers::getMetadata, sysUsersQuery.getMetadata());
+        }
+        // 时间范围查询
+        if (sysUsersQuery.getStartTime() != null) {
+            lambdaQueryWrapper.ge(SysUsers::getCreatedAt, sysUsersQuery.getStartTime());
+        }
+        if (sysUsersQuery.getEndTime() != null) {
+            lambdaQueryWrapper.le(SysUsers::getCreatedAt, sysUsersQuery.getEndTime());
+        }
+        return this.sysUsersMapper.selectPage(page, lambdaQueryWrapper);
     }
 
     @Override
@@ -61,4 +92,13 @@ public class SysUsersServiceImpl extends ServiceImpl<SysUsersMapper, SysUsers> i
         return this.sysUsersMapper.deleteById(id) > 0;
     }
 
+    @Override
+    public SysUsers getDetails(int id) {
+        return this.sysUsersMapper.selectById(id);
+    }
+
+    @Override
+    public List<SysUsers> getListByPhone(long phoneNumber) {
+        return this.sysUsersMapper.getListByPhone(phoneNumber);
+    }
 }

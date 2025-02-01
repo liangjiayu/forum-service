@@ -1,17 +1,33 @@
 package com.me.forum.admin.dto;
 
-import io.swagger.v3.oas.annotations.Parameter;
-import jakarta.validation.constraints.Min;
+import com.me.forum.common.dto.BasePages;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
-import org.hibernate.validator.constraints.Range;
+import lombok.EqualsAndHashCode;
+import org.springframework.format.annotation.DateTimeFormat;
 
+import java.time.LocalDateTime;
+import java.util.List;
+
+@EqualsAndHashCode(callSuper = true)
 @Data
-public class SysUsersQuery {
-    @Parameter(description = "页码，从1开始", example = "1")
-    @Min(value = 1, message = "页面必须大于1")
-    private Integer pageNum = 1;
+public class SysUsersQuery extends BasePages {
+    @Schema(description = "支持id查询，支持数组")
+    private List<Long> ids;
 
-    @Parameter(description = "分页大小", example = "10")
-    @Range(min = 1, max = 100, message = "分页大小范围为1-100")
-    private Integer pageSize = 10;
+    @Schema(description = "用户名查询", example = "xiaoming")
+    private String username;
+
+    @Schema(description = "性别", example = "1")
+    private Integer gender;
+
+    @Schema(description = "原信息查询，支持模糊查询", example = "哈哈")
+    private String metadata;
+
+    @Schema(description = "开始时间，格式为yyyy-MM-dd HH:mm:ss", example = "2025-02-01 10:00:00")
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private LocalDateTime startTime;
+    @Schema(description = "结束时间，格式为yyyy-MM-dd HH:mm:ss", example = "2025-02-01 18:00:00")
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private LocalDateTime endTime;    // 新增字段
 }

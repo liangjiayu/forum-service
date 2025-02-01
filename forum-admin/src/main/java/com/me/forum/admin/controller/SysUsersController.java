@@ -15,9 +15,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Controller
 @RequestMapping("/api/sys_users")
-@Tag(name = "用户管理", description = "用户管理API")
+@Tag(name = "SysUsersTag", description = "用户管理API")
 public class SysUsersController {
     @Autowired
     SysUsersService sysUsersService;
@@ -67,4 +69,20 @@ public class SysUsersController {
         return CommonResult.failed("用户不存在");
     }
 
+    @GetMapping("/{id}")
+    @ResponseBody
+    @Operation(summary = "用户详情")
+    public CommonResult<SysUsers> details(@Parameter(name = "id", description = "用户id", required = true) @PathVariable int id) {
+        SysUsers result = this.sysUsersService.getDetails(id);
+        return CommonResult.success(result);
+    }
+
+    @GetMapping("/getListByPhone")
+    @ResponseBody
+    @Operation(summary = "获取列表根据手机号码")
+    public CommonResult<List<SysUsers>> getListByPhone(
+            @Parameter(name = "phoneNumber", description = "手机号码", required = true) long phoneNumber) {
+        List<SysUsers> result = this.sysUsersService.getListByPhone(phoneNumber);
+        return CommonResult.success(result);
+    }
 }
