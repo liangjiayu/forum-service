@@ -5,7 +5,8 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.me.forum.admin.dto.SysUserDto;
+import com.me.forum.admin.dto.SysUserCreateDto;
+import com.me.forum.admin.dto.SysUserUpdateDto;
 import com.me.forum.admin.dto.SysUsersQuery;
 import com.me.forum.admin.mapper.SysUsersMapper;
 import com.me.forum.admin.model.SysUsers;
@@ -61,27 +62,27 @@ public class SysUsersServiceImpl extends ServiceImpl<SysUsersMapper, SysUsers> i
     }
 
     @Override
-    public boolean create(SysUserDto sysUserDto) {
+    public int create(SysUserCreateDto sysUserCreateDto) {
         SysUsers sysUser = new SysUsers();
-        BeanUtils.copyProperties(sysUserDto, sysUser);
+        BeanUtils.copyProperties(sysUserCreateDto, sysUser);
 
         /* 验证用户名是否唯一 */
         Long usernameCount = lambdaQuery().eq(SysUsers::getUsername, sysUser.getUsername()).count();
         if (usernameCount > 0) {
             throw new ApiException("用户名已存在!");
         }
+        boolean result = this.sysUsersMapper.insert(sysUser) > 0;
+        if (!result) {
+            throw new ApiException("创建用户失败!");
+        }
 
-        return this.sysUsersMapper.insert(sysUser) > 0;
+        return sysUser.getId();
     }
 
     @Override
-    public boolean update(int id, SysUserDto sysUserDto) {
-        /* 清空不可编辑字段 */
-        sysUserDto.setUsername(null);
-        sysUserDto.setPassword(null);
-
+    public boolean update(int id, SysUserUpdateDto sysUserUpdateDto) {
         SysUsers sysUser = new SysUsers();
-        BeanUtils.copyProperties(sysUserDto, sysUser);
+        BeanUtils.copyProperties(sysUserUpdateDto, sysUser);
         sysUser.setId(id);
 
         return this.sysUsersMapper.updateById(sysUser) > 0;

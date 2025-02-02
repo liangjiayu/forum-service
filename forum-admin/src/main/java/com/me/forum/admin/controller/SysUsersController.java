@@ -1,7 +1,8 @@
 package com.me.forum.admin.controller;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.me.forum.admin.dto.SysUserDto;
+import com.me.forum.admin.dto.SysUserCreateDto;
+import com.me.forum.admin.dto.SysUserUpdateDto;
 import com.me.forum.admin.dto.SysUsersQuery;
 import com.me.forum.admin.model.SysUsers;
 import com.me.forum.admin.service.SysUsersService;
@@ -35,13 +36,10 @@ public class SysUsersController {
 
     @PostMapping("/create")
     @ResponseBody
-    @Operation(summary = "创建用户")
-    public CommonResult<Boolean> create(@Validated(SysUserDto.CreateUser.class) @RequestBody SysUserDto sysUserDto) {
-        boolean result = this.sysUsersService.create(sysUserDto);
-        if (result) {
-            return CommonResult.success(true);
-        }
-        return CommonResult.failed();
+    @Operation(summary = "创建用户，返回用户id")
+    public CommonResult<Integer> create(@Validated @RequestBody SysUserCreateDto sysUserCreateDto) {
+        int result = this.sysUsersService.create(sysUserCreateDto);
+        return CommonResult.success(result);
     }
 
     @PostMapping("/update/{id}")
@@ -49,9 +47,9 @@ public class SysUsersController {
     @Operation(summary = "更新用户")
     public CommonResult<Boolean> update(
             @Parameter(name = "id", description = "用户id", required = true) @PathVariable("id") int id,
-            @Validated @RequestBody SysUserDto sysUserDto
+            @Validated @RequestBody SysUserUpdateDto sysUserUpdateDto
     ) {
-        boolean result = this.sysUsersService.update(id, sysUserDto);
+        boolean result = this.sysUsersService.update(id, sysUserUpdateDto);
         if (result) {
             return CommonResult.success(true);
         }

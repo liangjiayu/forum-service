@@ -1,33 +1,19 @@
 package com.me.forum.admin.dto;
 
 import com.me.forum.admin.enums.GenderEnum;
+import com.me.forum.admin.model.SysUsersMetaData;
 import com.me.forum.common.validator.ValidEnum;
 import io.swagger.v3.oas.annotations.media.Schema;
-import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
-import jakarta.validation.groups.Default;
 import lombok.Data;
 import org.hibernate.validator.constraints.URL;
 
 
 @Data
-public class SysUserDto {
-
-    public interface CreateUser extends Default {
-    }
-
-    @Schema(description = "用户名，唯一")
-    @NotBlank(message = "用户名不能为空", groups = CreateUser.class)
-    @Pattern(regexp = "^[A-Za-z0-9]{6,20}$", message = "用户名必须是6-20位的英文或数字", groups = CreateUser.class)
-    private String username;
-
-    @Schema(description = "用户密码")
-    @NotBlank(message = "密码不能为空", groups = CreateUser.class)
-    @Pattern(regexp = "^[A-Za-z0-9]{6,20}$", message = "密码必须是6-20位的英文或数字", groups = CreateUser.class)
-    private String password;
-
-    @Schema(description = "用户手机号", example = "13812345678")
+public class SysUserUpdateDto {
+    @Schema(description = "用户手机号")
     @Pattern(regexp = "^1[3-9]\\d{9}$", message = "手机号格式不合法")
     private String phoneNumber;
 
@@ -47,5 +33,6 @@ public class SysUserDto {
     private String profileDescription;
 
     @Schema(description = "用户元数据，存储额外的自定义信息")
-    private String metadata;
+    @Valid
+    private SysUsersMetaData metadata;
 }

@@ -1,6 +1,7 @@
 package com.me.forum.admin.model;
 
 import com.baomidou.mybatisplus.annotation.*;
+import com.baomidou.mybatisplus.extension.handlers.JacksonTypeHandler;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.me.forum.admin.enums.GenderEnum;
@@ -13,7 +14,7 @@ import java.time.LocalDateTime;
 
 @Data
 @EqualsAndHashCode(callSuper = false)
-@TableName("sys_users")
+@TableName(value = "sys_users", autoResultMap = true)
 public class SysUsers implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -28,7 +29,7 @@ public class SysUsers implements Serializable {
     @Schema(description = "用户密码")
     private String password;
 
-    @Schema(description = "用户手机号", example = "13812345678")
+    @Schema(description = "用户手机号")
     private String phoneNumber;
 
     @Schema(description = "用户性别，枚举类型：男性(1)、女性(2)、其他(3)", example = "1")
@@ -54,7 +55,8 @@ public class SysUsers implements Serializable {
     private String profileDescription;
 
     @Schema(description = "用户元数据，存储额外的自定义信息")
-    private String metadata;
+    @TableField(typeHandler = JacksonTypeHandler.class)
+    private SysUsersMetaData metadata;
 
     @Schema(description = "创建时间")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")

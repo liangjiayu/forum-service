@@ -6,11 +6,6 @@ spring:
     name: forum-admin
   profiles:
     active: dev
-  #  main:
-  #    allow-circular-references: true
-  mvc:
-    pathmatch:
-      matching-strategy: ant_path_matcher
 
 # mybatis-plus配置详情： https://baomidou.com/reference/
 mybatis-plus:
